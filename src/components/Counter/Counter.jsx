@@ -1,4 +1,6 @@
 import React from "react";
+import Control from "./Control";
+
 
 
 class Counter extends React.Component{
@@ -8,7 +10,12 @@ class Counter extends React.Component{
     //         value:0
     //     }
     // }=>
-    state={value:0};
+    static defaultProps ={
+        initialValue:0
+    }
+
+
+    state={value:this.props.initialValue};
 
     handleIncrement=()=>{
         this.setState(prevState=>(
@@ -27,14 +34,7 @@ class Counter extends React.Component{
         return <div className="Counter">
         <span Counter__value>{this.state.value}</span>
          
-        <div className="Counter__controls">
-            <button type="button" onClick={this.handleIncrement}>
-            Увеличить на 1
-            </button>
-            <button type="button" onClick={this.handleDecrement}>
-            Уменьшить на 1
-            </button>
-        </div>
+            <Control onIncrement={this.handleIncrement} onDecrement={this.handleDecrement}/>
 
         </div>
     }
